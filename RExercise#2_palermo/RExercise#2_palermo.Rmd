@@ -1,0 +1,111 @@
+---
+title: "RExercise#2_palermo"
+author: "Alexa Palermo"
+date: "2026-09-30"
+output: html_document
+---
+  
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+## Part A Arithmetic Operations 
+## 01
+a <- 17
+b <- 5
+a + b  
+a - b 
+a * b 
+a / b
+```
+
+```{r}
+## 02 division
+a <- 17
+b <- 5
+a %% b
+a %/% b
+```
+
+```{r}
+## 03 power
+2 ^ 10
+```
+
+```{r}
+## Question 1:
+17/5
+17 %% 5
+17 %/% 5
+## first operation performs the basic division operation, the second is the reminder of the division and lastly the integer division
+```
+
+```{r}
+## Question 2:
+10 %% 3
+## i'm correct
+```
+
+```{r}
+## Part B — Basic Data Types
+## 01 typeof
+x <- 42
+y <- 42L        # the L suffix forces an integer
+z <- "42"
+w <- TRUE
+v <- 3 + 2i     # complex number
+
+typeof(x)
+typeof(y)
+typeof(z)
+typeof(w)
+typeof(v)
+```
+```{r}
+## 02 class
+x <- 42
+y <- 42L        # the L suffix forces an integer
+z <- "42"
+w <- TRUE
+v <- 3 + 2i     # complex number
+
+class(x)
+class(y)
+class(z)
+class(w)
+class(v)
+```
+```{r}
+## 03 mode
+x <- 42
+y <- 42L        # the L suffix forces an integer
+z <- "42"
+w <- TRUE
+v <- 3 + 2i     # complex number
+
+mode(x)
+mode(y)
+mode(z)
+mode(w)
+mode(v)
+```
+```{r}
+## Question 3
+x <- 42
+y <- 42L
+
+typeof(x)
+typeof(y)
+
+## typeof(x) has an ouput of double because R default 42 as a floating number type(y) is a integer because of the L sufftix that force integer storage.
+```
+```{r}
+## Question 4
+## Yes, they can produce different outputs because R stores data depending how it classify it.
+```
+
+```{r}
+## Part C — Type Conversion 
+
+```
