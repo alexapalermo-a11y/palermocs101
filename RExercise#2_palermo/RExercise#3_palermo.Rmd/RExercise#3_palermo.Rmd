@@ -1,0 +1,116 @@
+---
+title: "RExercise#3_palermo.Rmd"
+author: "Alexa Palermo"
+date: "2026-10-14"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+##Part A — Creating Vectors: c(), seq(), rep()
+```{r}
+# TODO: Create a numeric vector called scores containing: 88, 92, 79, 95, 84
+
+# Create the numeric vector scores
+scores <- c(88, 92, 79, 95, 84)
+
+# Create the character vector subjects
+subjects <- c("Math", "Science", "English", "History", "PE")
+```
+```{r}
+# Repeat the value "A" 4 times
+rep("A", times = 4)
+
+# Repeat each element twice in order ("A" "A" "B" "B")
+rep(c("A", "B"), each = 2)
+
+# Repeat the whole sequence twice ("A" "B" "A" "B")
+rep(c("A", "B"), times = 2)
+```
+```{r}
+# TODO: Use rep() to create a vector that repeats the value "A" 4 times
+rep("A", times = 4)
+
+# TODO: Use rep() with the "each" argument to turn c("A", "B") into
+# "A" "A" "B" "B" (each element repeated twice, in order)
+rep(c("A", "B"), each = 2)
+
+# TODO: Use rep() with the "times" argument to turn c("A", "B") into
+# "A" "B" "A" "B" (the whole sequence repeated twice)
+rep(c("A", "B"), times = 2)
+```
+```{r}
+#Question 1
+# Set up a vector named age
+age <- c(15, 28, 32, 36, 27, 18, 52, 39, 42, 29, 35, 31, 27, 22, 37, 34, 19, 20, 57, 49, 50, 37, 46, 25, 17, 12, 42, 53, 41, 51, 35, 24, 33, 8)
+
+# a. How many data points?
+length(age)
+
+# b. Find the reciprocal of age?
+1 / age
+
+# c. Assign also new_age <- c(age, 0, age). What happens to new_age?
+new_age <- c(age, 0, age)
+
+# d. Find the minimum and the maximum value of age.
+min(age)
+max(age) 
+range(age)
+
+```
+```{r}
+#Question 2
+## The each argument repeats every individual element one by one before moving on to the next element, whereas the times argument repeats the entire vector as a whole sequence multiple times.
+```
+```{r}
+#Question #3:
+## each repeats each individual element sequentially before moving to the next
+## times repeats the entire sequence as a whole unit
+##Use by to specify the exact step size/increment between numbers.
+##Use length.out to generate a fixed number of total elements evenly spaced across a range.
+```
+
+```{r}
+#Question #4:
+# a.Generate a sequence for 20 to 60. Name the vector as vec_num
+
+vec_num <- seq(20, 60)
+# or simply:
+vec_num <- 20:60
+
+# b. Get the mean for vec_num.
+mean(vec_num)
+
+# c. Get the sum for vec_num.
+sum(vec_num)
+
+# d. How many data points are there in vec_num?
+length(vec_num)
+```
+## Part B — Subsetting (Accessing) Vectors
+```{r}
+grades <- c(88, 92, 79, 95, 84)
+names(grades) <- c("Math", "Science", "English", "History", "PE")
+
+# TODO: Access the 3rd element of grades using positional indexing
+grades[3]
+
+# TODO: Access the 1st abd 4th element of grades using positional indexing
+grades[c(1, 4)]
+
+# TODO: Access "Science" and "PE" together using their names
+grades[c("Science", "PE")]
+```
+```{r}
+# TODO: Return all elements of grades EXCEPT the 1st and 4th, using
+# negative indexing, e.g. grades[-c(...)]
+grades[-c(1, 4)]
+```
+```{r}
+#TODO: Use a logical condition to return only the grades that are
+# greater than or equal to 85 (hint: grades[grades >= 85])
+```
+
+
