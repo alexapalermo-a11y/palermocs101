@@ -112,5 +112,136 @@ grades[-c(1, 4)]
 #TODO: Use a logical condition to return only the grades that are
 # greater than or equal to 85 (hint: grades[grades >= 85])
 ```
+```{r}
+#Question #5:
+#Answer: Negative Indexing: Useful when you want to remove a specific column or position, such as dropping an ID column (data[-1]) before running calculations.
+
+#Logical Indexing: Useful when you want to filter data by a rule rather than a fixed position, such as keeping only passing test scores (grades[grades >= 75]).
+```
+```{r}
+#Question #6:
+#Answer: It outputs NA
+# R returns NA (Not Available) instead of an error so that your code keeps running smoothly without crashing when encountering missing or out-of-bounds positions.
+grades[10]
+```
+```{r}
+#Question #7:
+#Answer: 
+Filter(function(i) { all(i %% c(3, 5, 7) != 0) }, seq(100))
+```
+## Part C — Vector Operations and append()
+```{r}
+x <- c(1, 2, 3, 4)
+y <- c(10, 20, 30, 40)
+# TODO: Add x and y element-wise, and print the result
+x + y
+
+# TODO: Multiply every element of x by 2
+x * 2
+```
+```{r}
+z <- c(1, 2, 3, 4, 5, 6)
+short <- c(1, 0)
+# TODO: Add z and short together and print the result. Run this even
+# though the vectors are different lengths -- observe what R does.
+z + short
+```
+```{r}
+fruits <- c("apple", "banana", "cherry")
+# TODO: Use append() to add "date" to the end of fruits
+fruits <- append(fruits, "date")
+fruits
+
+# TODO: Use append() with the "after" argument to insert "kiwi" between
+# "apple" and "banana" (i.e., after position 1)
+fruits <- append(fruits, "kiwi", after = 1)
+fruits
+```
+```{r}
+#Question #8:
+#Answer: R automatically repeated (recycled) the shorter vector short c(1, 0) three times to match the length of z (6 elements), expanding it internally to c(1, 0, 1, 0, 1, 0) so it could perform element-by-element addition.
+```
+```{r}
+#Question #9:
+#Answer: Adding z (length 6) to c(1, 0, 1, 1) (length 4)
+#Comparison & Condition: Adding a vector of length 4 to length 6 triggers a warning: longer object length is not a multiple of shorter object length.Rule: R recycles silently when the length of the longer vector is an exact multiple of the shorter vector's length. It gives a warning when the length of the longer vector is not a multiple of the shorter one, because the shorter vector has to be cut off mid-cycle to fit.
+```
+## Part D — Lists: Creating and Subsetting
+```{r}
+# TODO: Create a list called student with these named elements:
+# name = "Maria Santos", age = 20, grades = c(88, 92, 79),
+# is_enrolled = TRUE
+student <- list(
+  name = "Maria Santos",
+  age = 20,
+  grades = c(88, 92, 79),
+  is_enrolled = TRUE
+)
+```
+```{r}
+# TODO: Access the "grades" element of student using single brackets
+# student["grades"] -- then check its type with class()
+student["grades"]
+class(student["grades"])
+```
+```{r}
+# TODO: Access the "grades" element of student using double brackets
+# student[["grades"]] -- then check its type with class()
+student[["grades"]]
+class(student[["grades"]])
+```
+```{r}
+# TODO: Access the "name" element of student using the $ operator
+# student$name
+student$name
+```
+```{r}
+# TODO: From student, extract just the SECOND grade in the grades vector
+# in a single expression, e.g. student[["grades"]][2] or student$grades[2]
+student[["grades"]][2]
+```
+```{r}
+#Question #10: 
+#Answer:Single brackets [ ] extract a sub-list (a smaller list containing the element), keeping the original list structure intact. Double brackets [[ ]] extract the actual contents inside the list element directly.
+class(student["grades"])
+class(student[["grades"]])
+```
+```{r}
+#Question #11:
+#Answer: A vector can only hold elements of the same simple data type (like all numbers or all strings), so single brackets [ ] can pull out values directly. In contrast, a list can contain mixed data types and complex structures (vectors, data frames, or other lists). R uses [ ] when you want to keep the list container structure (e.g., getting a subset of list items) and [[ ]] when you want to reach inside and extract a single underlying object to work with its actual data type.
+```
+## Part E — Critical Thinking Challenge
+```{r}
+inventory <- list(
+  item = c("Notebook", "Pen", "Eraser"),
+  price = c(25.50, 10.00, 5.00),
+  in_stock = c(TRUE, TRUE, FALSE)
+)
+# TODO: Using what you learned in Parts B and D, print only the items
+# (from inventory$item) that are currently in stock (in_stock == TRUE)
+inventory$item[inventory$in_stock]
+```
+```{r}
+# TODO: A new product "Ruler" priced at 15.00 and in stock (TRUE) needs
+# to be added to inventory. Use append() to add "Ruler" to
+# inventory$item, 15.00 to inventory$price, and TRUE to inventory$in_stock.
+# (You will need three separate append() calls, one per vector.)
+inventory$item <- append(inventory$item, "Ruler")
+inventory$price <- append(inventory$price, 15.00)
+inventory$in_stock <- append(inventory$in_stock, TRUE)
+```
+```{r}
+#Question #12:
+#Answer: Extraction: R first evaluates inventory$in_stock, which extracts the logical vector c(TRUE, TRUE, FALSE).
+#Positional Alignment: Because inventory$item (c("Notebook", "Pen", "Eraser")) and inventory$in_stock have the exact same length and corresponding element order, position 1 in in_stock matches position 1 in item.
+#Filtering: R applies the extracted logical vector as a filter inside the brackets inventory$item[...]. It keeps elements where the corresponding position is TRUE ("Notebook", "Pen") and excludes elements where it is FALSE ("Eraser").
+```
+```{r}
+#Question #13:
+#Answer: Risks: Storing data in separate vectors makes it easy for elements to become misaligned. If you sort or filter one vector without doing the exact same thing to the others, items will no longer match their correct prices or stock status.
+#Argument: You should use a list (or data frame) because grouping related variables into a single structure guarantees that all attributes stay connected and update together safely.
+```
+
+
 
 
