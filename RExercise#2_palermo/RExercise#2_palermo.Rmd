@@ -8,10 +8,10 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
+## Part A Arithmetic Operations
 ```{r}
-## Part A Arithmetic Operations 
-## 01
+#TODO: Store 17 in a variable called a, and 5 in a variable called b
+# Then print the results of: a + b, a - b, a * b, a / b
 a <- 17
 b <- 5
 a + b  
@@ -21,7 +21,9 @@ a / b
 ```
 
 ```{r}
-## 02 division
+#TODO: Using the same a and b, compute and print a %% b and a %/% b
+# a %% b = remainder of a / b
+# a %/% b = whole-number (integer) division
 a <- 17
 b <- 5
 a %% b
@@ -29,12 +31,12 @@ a %/% b
 ```
 
 ```{r}
-## 03 power
+#TODO: Print 2 raised to the power of 10 using the ^ operator
 2 ^ 10
 ```
 
 ```{r}
-## Question 1:
+#Question#1: Run 17 / 5, 17 %% 5, and 17 %/% 5 side by side. In your own words, explain how these three results relate to each other mathematically.
 17/5
 17 %% 5
 17 %/% 5
@@ -42,14 +44,13 @@ a %/% b
 ```
 
 ```{r}
-## Question 2:
+#Question#2: Predict the output of 10 %% 3 and 10 %/% 3 before running the code. Were you correct? If not, explain what you misunderstood.
 10 %% 3
-## i'm correct
+#i'm correct
 ```
-
+##Part B — Basic Data Types: typeof(), class(), and mode()
 ```{r}
-## Part B — Basic Data Types
-## 01 typeof
+#TODO: Use typeof() to check the type of each of x, y, z, w, v
 x <- 42
 y <- 42L        # the L suffix forces an integer
 z <- "42"
@@ -63,7 +64,7 @@ typeof(w)
 typeof(v)
 ```
 ```{r}
-## 02 class
+#TODO: Use class() to check the class of each of x, y, z, w, v
 x <- 42
 y <- 42L        # the L suffix forces an integer
 z <- "42"
@@ -77,7 +78,7 @@ class(w)
 class(v)
 ```
 ```{r}
-## 03 mode
+#TODO: Use mode() to check the class of each of x, y, z, w, v
 x <- 42
 y <- 42L        # the L suffix forces an integer
 z <- "42"
@@ -91,21 +92,103 @@ mode(w)
 mode(v)
 ```
 ```{r}
-## Question 3
+#Question #3:x <- 42 and y <- 42L look almost identical, but typeof(x) and typeof(y) give different answers. Explain the difference in your own words.
 x <- 42
 y <- 42L
 
 typeof(x)
 typeof(y)
 
-## typeof(x) has an ouput of double because R default 42 as a floating number type(y) is a integer because of the L sufftix that force integer storage.
+## typeof(x) has an ouput of double because R default 42 as a floating number type(y ) is a integer because of the L sufftix that force integer storage.
 ```
 ```{r}
-## Question 4
-## Yes, they can produce different outputs because R stores data depending how it classify it.
+#Question #4: Is typeof() ever different from class() and from mode() for the same object? Look at your results above and explain any case where this happens (or, if you did not see one, explain what you would expect for a matrix or factor).
+#Answer: Yes, they can produce different outputs because R stores data depending how it classify it.
 ```
+##Part C — Type Conversion
 
 ```{r}
-## Part C — Type Conversion 
-
+#TODO: Convert num_string to a numeric value using as.numeric()
+num_string <- "123"
+num <- as.numeric(num_string)
+# Then check its type with typeof(), class(), and mode()
+typeof(num)
+class(num)
+mode(num)
+``` 
+```{r} 
+# TODO: Convert the number 0 and the number 1 to logical using as.logical()
+# What do you get?
+as.logical(0)
+as.logical(1)  
 ```
+```{r} 
+#TODO: Try converting bad_string to numeric using as.numeric()
+# Run this chunk and observe the warning message and the result
+
+bad_string <- "hello123"
+
+bad_num <- as.numeric(bad_string)
+bad_num
+```
+```{r} 
+#Question #5
+#Why do you think R is designed to give a warning here rather than crashing the whole script? #Answer: R often handles large datasets with thousands of rows. Giving a warning instead of crashing allows the script to keep running, converting what it can while replacing invalid values with NA.
+#What are the risks of this behavior if you don't read your warnings? 
+#Answer: You might accidentally lose data without realizing it. The NA values can mess up your math downstream or give you wrong results in your analysis.
+```
+```{r} 
+#Question #6:What do you think as.logical(2) and as.logical(-1) will produce? 
+# Answer: They will both produce TRUE.
+as.logical(2)
+as.logical(-1)
+#The Rule: 0 is always FALSE, and any other number (positive or negative) is TRUE.
+```
+## Part D — Strings, paste(), and paste0()
+```{r} 
+first_name <- "Juan"
+last_name <- "Dela Cruz"
+#TODO: Print first_name and last_name using print() and/or cat()
+print(first_name)
+print(last_name)
+# OR using cat():
+cat(first_name, last_name, "\n")
+
+#TODO: Use paste() and paste0() to combine into a full name
+full_name_paste <- paste(first_name, last_name)
+full_name_paste0 <- paste0(first_name, last_name)
+
+full_name_paste  
+full_name_paste0  
+
+#TODO: Use paste() with sep = "-"
+paste(first_name, last_name, sep = "-")
+
+#TODO: Use paste0() to build the sentence
+age <- 21
+full_name <- paste(first_name, last_name)
+
+sentence <- paste0(full_name, " is ", age, " years old.")
+sentence
+```
+```{r} 
+#Question #7:Explain why paste() and paste0() produced different results: #Answer:paste() automatically adds a space between words by default. paste0() does not add any space at all, which is why it squashed the names together as "JuanDela Cruz".
+#Question #8: Did this cause an error? Explain what paste0() does internally: 
+# Answer: No, it did not cause an error. paste0() automatically converts numbers into text behind the scenes before combining them. This is called implicit coercion—R converts 21into "21" for you so everything joins together smoothly.
+```
+## Part E — Critical Thinking Challenge
+```{r} 
+# TODO: Predict, then test: what is the result of "5" + 5 in R?
+#Run it and read the error message carefully.
+as.numeric("5") + 5
+``` 
+```{r} 
+#Question #9:Why does R require explicit conversion instead of guessing? 
+#Answer: R is made for math and data analysis, where precision is important. If R guessed, it might accidentally do math on text or combine text incorrectly without you realizing it. Forcing you to use as.numeric() prevents hidden mistakes in your calculations.
+# Question #10: Diagnosis and fix paragraph: 
+# Answer: The numbers were likely imported as text (character data), which happens when a text file contains symbols or words like "N/A". To fix this, I would first check the column type using class(). Then, I would convert the column to numbers using as.numeric(). Finally, I would run sum(..., na.rm = TRUE) to calculate the sum while ignoring any missing values (NA).
+```
+ 
+ 
+
+
