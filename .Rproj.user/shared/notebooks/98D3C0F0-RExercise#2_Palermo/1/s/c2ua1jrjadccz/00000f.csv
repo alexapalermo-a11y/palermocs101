@@ -1,2 +1,0 @@
-"0","## Question #4:k Is typeof() ever different from class() and from mode() for the same object? Look at your results above and explain any case where this happens (or, if you did not see one, explain what you would expect for a matrix or factor)."
-"0","## Yes, they can produce different outputs because R stores data depending how it classify it."
