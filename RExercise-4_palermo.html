@@ -421,6 +421,118 @@ results</code></pre>
 ##    141.0000  83357.0000    591.1844    425.0000 243908.4086    493.8708 
 ##         min         max 
 ##    135.0000   3710.0000</code></pre>
+<pre class="r"><code>#Question #3:
+# Create vectors according to the above table.
+# 1. Power Ranking vector
+power_ranking &lt;- 1:25
+
+# 2. Celebrity Name vector
+celebrity_name &lt;- c(
+  &quot;Tom Cruise&quot;, &quot;Rolling Stones&quot;, &quot;Oprah Winfrey&quot;, &quot;U2&quot;, &quot;Tiger Woods&quot;,
+  &quot;Steven Spielberg&quot;, &quot;Howard Stern&quot;, &quot;50 Cent&quot;, &quot;Cast of the Sopranos&quot;,
+  &quot;Dan Brown&quot;, &quot;Bruce Springsteen&quot;, &quot;Donald Trump&quot;, &quot;Muhammad Ali&quot;,
+  &quot;Paul McCartney&quot;, &quot;George Lucas&quot;, &quot;Elton John&quot;, &quot;David Letterman&quot;,
+  &quot;Phil Mickelson&quot;, &quot;J.K. Rowling&quot;, &quot;Brad Pitt&quot;, &quot;Peter Jackson&quot;,
+  &quot;Dr. Phil McGraw&quot;, &quot;Jay Leno&quot;, &quot;Celine Dion&quot;, &quot;Kobe Bryant&quot;
+)
+
+# 3. Pay vector (in millions)
+pay &lt;- c(
+  67, 91, 225, 110, 90, 332, 302, 41, 52, 88, 55, 44, 55, 
+  40, 235, 34, 40, 47, 75, 25, 39, 45, 32, 40, 31
+)
+
+# Combine into a data frame (optional but recommended)
+forbes_ranking &lt;- data.frame(PowerRanking = power_ranking, Celebrity = celebrity_name, Pay = pay)
+forbes_ranking</code></pre>
+<pre><code>##    PowerRanking            Celebrity Pay
+## 1             1           Tom Cruise  67
+## 2             2       Rolling Stones  91
+## 3             3        Oprah Winfrey 225
+## 4             4                   U2 110
+## 5             5          Tiger Woods  90
+## 6             6     Steven Spielberg 332
+## 7             7         Howard Stern 302
+## 8             8              50 Cent  41
+## 9             9 Cast of the Sopranos  52
+## 10           10            Dan Brown  88
+## 11           11    Bruce Springsteen  55
+## 12           12         Donald Trump  44
+## 13           13         Muhammad Ali  55
+## 14           14       Paul McCartney  40
+## 15           15         George Lucas 235
+## 16           16           Elton John  34
+## 17           17      David Letterman  40
+## 18           18       Phil Mickelson  47
+## 19           19         J.K. Rowling  75
+## 20           20            Brad Pitt  25
+## 21           21        Peter Jackson  39
+## 22           22      Dr. Phil McGraw  45
+## 23           23             Jay Leno  32
+## 24           24          Celine Dion  40
+## 25           25          Kobe Bryant  31</code></pre>
+<pre class="r"><code># b. Modify the power ranking and pay of J.K. Rowling (Change power ranking to 15 and pay to 90).
+power_ranking[19] &lt;- 15
+pay[19] &lt;- 90
+
+
+forbes_ranking</code></pre>
+<pre><code>##    PowerRanking            Celebrity Pay
+## 1             1           Tom Cruise  67
+## 2             2       Rolling Stones  91
+## 3             3        Oprah Winfrey 225
+## 4             4                   U2 110
+## 5             5          Tiger Woods  90
+## 6             6     Steven Spielberg 332
+## 7             7         Howard Stern 302
+## 8             8              50 Cent  41
+## 9             9 Cast of the Sopranos  52
+## 10           10            Dan Brown  88
+## 11           11    Bruce Springsteen  55
+## 12           12         Donald Trump  44
+## 13           13         Muhammad Ali  55
+## 14           14       Paul McCartney  40
+## 15           15         George Lucas 235
+## 16           16           Elton John  34
+## 17           17      David Letterman  40
+## 18           18       Phil Mickelson  47
+## 19           19         J.K. Rowling  75
+## 20           20            Brad Pitt  25
+## 21           21        Peter Jackson  39
+## 22           22      Dr. Phil McGraw  45
+## 23           23             Jay Leno  32
+## 24           24          Celine Dion  40
+## 25           25          Kobe Bryant  31</code></pre>
+<pre class="r"><code># Question #4:
+# Initial List: Create a list of ten (10) vegetables
+vegetables &lt;- c(&quot;Carrot&quot;, &quot;Broccoli&quot;, &quot;Spinach&quot;, &quot;Potato&quot;, &quot;Tomato&quot;, 
+                &quot;Cucumber&quot;, &quot;Cabbage&quot;, &quot;Onion&quot;, &quot;Garlic&quot;, &quot;Eggplant&quot;)
+vegetables</code></pre>
+<pre><code>##  [1] &quot;Carrot&quot;   &quot;Broccoli&quot; &quot;Spinach&quot;  &quot;Potato&quot;   &quot;Tomato&quot;   &quot;Cucumber&quot;
+##  [7] &quot;Cabbage&quot;  &quot;Onion&quot;    &quot;Garlic&quot;   &quot;Eggplant&quot;</code></pre>
+<pre class="r"><code># Add 2 additional vegetables after the last vegetable in the list. What is the result?
+# Appending 2 vegetables to the end of the vector
+vegetables &lt;- c(vegetables, &quot;Zucchini&quot;, &quot;Bell Pepper&quot;)
+vegetables</code></pre>
+<pre><code>##  [1] &quot;Carrot&quot;      &quot;Broccoli&quot;    &quot;Spinach&quot;     &quot;Potato&quot;      &quot;Tomato&quot;     
+##  [6] &quot;Cucumber&quot;    &quot;Cabbage&quot;     &quot;Onion&quot;       &quot;Garlic&quot;      &quot;Eggplant&quot;   
+## [11] &quot;Zucchini&quot;    &quot;Bell Pepper&quot;</code></pre>
+<pre class="r"><code># How many datapoints do you have?
+length(vegetables)</code></pre>
+<pre><code>## [1] 12</code></pre>
+<pre class="r"><code># Add 4 additional vegetables after index 5. What is the result?
+# Inserting 4 vegetables after index 5
+new_veggies &lt;- c(&quot;Cauliflower&quot;, &quot;Lettuce&quot;, &quot;Radish&quot;, &quot;Pumpkin&quot;)
+
+vegetables &lt;- c(vegetables[1:5], new_veggies, vegetables[6:length(vegetables)])
+vegetables</code></pre>
+<pre><code>##  [1] &quot;Carrot&quot;      &quot;Broccoli&quot;    &quot;Spinach&quot;     &quot;Potato&quot;      &quot;Tomato&quot;     
+##  [6] &quot;Cauliflower&quot; &quot;Lettuce&quot;     &quot;Radish&quot;      &quot;Pumpkin&quot;     &quot;Cucumber&quot;   
+## [11] &quot;Cabbage&quot;     &quot;Onion&quot;       &quot;Garlic&quot;      &quot;Eggplant&quot;    &quot;Zucchini&quot;   
+## [16] &quot;Bell Pepper&quot;</code></pre>
+<pre class="r"><code># d. How many datapoints does your vegetable list have?
+length(vegetables)</code></pre>
+<pre><code>## [1] 16</code></pre>
 
 
 
