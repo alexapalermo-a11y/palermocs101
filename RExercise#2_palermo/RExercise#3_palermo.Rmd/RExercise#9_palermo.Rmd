@@ -1,0 +1,125 @@
+---
+title: "RExercise#9_palermo"
+author: "Alexa Palermo"
+date: "2026-11-04"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Lab: Basic Operations of R Programming
+```{r}
+# Part A — Creating Data Frames
+#a.Create a data frame and save it as shoesize.csv
+# 1. Create the data frame from the two-column display in the image
+shoe_data <- data.frame(
+  Shoe_size = c(
+    6.5, 9.0, 8.5, 8.5, 10.5, 7.0, 9.5, 9.0, 13.0, 7.5, 10.5, 8.5, 12.0, 10.5,
+    13.0, 11.5, 8.5, 5.0, 10.0, 6.5, 7.5, 8.5, 10.5, 8.5, 10.5, 11.0, 9.0, 13.0
+  ),
+  Height = c(
+    66.0, 68.0, 64.5, 65.0, 70.0, 64.0, 70.0, 71.0, 72.0, 64.0, 74.5, 67.0, 71.0, 71.0,
+    77.0, 72.0, 59.0, 62.0, 72.0, 66.0, 64.0, 67.0, 73.0, 69.0, 72.0, 70.0, 69.0, 70.0
+  ),
+  Gender = c(
+    "F", "F", "F", "F", "M", "F", "F", "F", "M", "F", "M", "F", "M", "M",
+    "M", "M", "F", "F", "M", "F", "F", "M", "M", "F", "M", "M", "M", "M"
+  )
+)
+
+# 2. Save the data frame to a CSV file
+write.csv(shoe_data, file = "shoesize.csv", row.names = FALSE)
+
+# b. Import the saved CSV into R and display the last 5 rows
+imported_data <- read.csv("shoesize.csv")
+tail(imported_data, n = 5)
+
+# c. Describe the data by showing the structures and its content
+str(imported_data)
+summary(imported_data)
+
+# d. Inspect its dimensions (How many rows? How about columns?)
+dim(imported_data)
+nrow(imported_data)
+ncol(imported_data)
+
+# e. Inspect by using summary(). What is the difference of the summary() from str() function?
+summary(imported_data)
+
+#f. Create a subset by males and females with their corresponding shoe size and height. What is its result? Show the R scripts.
+
+male_subset <- subset(imported_data, Gender == "M")
+female_subset <- subset(imported_data, Gender == "F")
+female_subset
+
+#g. Find the mean of shoe size and height of the respondents. Write the R scripts and its result.
+mean_shoe <- mean(imported_data$Shoe_size)
+mean_shoe
+mean_height <- mean(imported_data$Height)
+mean_height
+
+#h. Is there a relationship between shoe size and height? Why?
+cor(imported_data$Shoe_size, imported_data$Height)
+
+#Answer:Yes, there is a strong positive linear relationship between shoe size and height (correlation coefficient ≈ 0.867).Taller individuals naturally tend to have larger feet to provide adequate balance, support, and structural proportion for their larger bodily frame. As height increases, shoe size generally increases as well.
+```
+```{r}
+# Question #2
+#TODO: Create factors for the gender column.   
+imported_data$Gender <- factor(imported_data$Gender, levels = c("F", "M"))
+
+str(imported_data$Gender)
+summary(imported_data$Gender)
+```
+```{r}
+# Question #3
+getwd()
+shoes <- read.csv("shoesize.csv")
+# Answer:
+#Setting the working directory to the .Rmd file location ensures relative file paths work on any machine. Shared project folders load datasets without broken absolute paths (e.g., C:/Users/name/...) or requiring manual setwd() edits.
+
+```
+```{r}
+# Question #4
+str(shoes)
+# Running str(shoes) shows Gender as a character type, and importing continuous numbers as text breaks mathematical functions, misconfigures plot axes, and causes values to sort alphabetically rather than numerically.
+```
+```{r}
+# Question #5
+head(shoes)
+tail(shoes)
+# Inspecting both head() and tail() ensures the dataset imported completely from start to finish, catching trailing footer notes, truncated files, or blank NA rows that head() alone misses.
+```
+```{r}
+# Question #6
+# # TODO: Use cor(shoes$ShoeSize, shoes$Height) to compute the correlation
+# between shoe size and height across ALL observations
+cor(shoes$Shoe_size, shoes$Height)
+
+# 6b: Filter observations
+# # TODO: Return all rows where ShoeSize is greater than or equal to 11,
+# regardless of gender
+shoes[shoes$ShoeSize >= 11, ]
+
+```
+```{r}
+# Question #7: Group comparisons and underlying factor analysis
+# 1. Create the subsets first
+female_data <- subset(shoes, Gender == "F")
+male_data   <- subset(shoes, Gender == "M")
+
+# 2. Then run your correlations and means (make sure to use Shoe_size everywhere!)
+cor(female_data$Shoe_size, female_data$Height)
+cor(male_data$Shoe_size, male_data$Height)
+
+mean(female_data$Height); mean(female_data$Shoe_size)
+mean(male_data$Height);   mean(male_data$Shoe_size)
+
+# Comparison & Pattern: Male respondents have a substantially higher mean height (71.68 inches vs. 65.18 inches) and higher mean shoe size (11.07 vs. 7.79) compared to female respondents
+
+#Relationship & Gender Factor: The overall strong correlation is driven heavily by gender differences; when evaluated within each gender subgroup, the correlation drops significantly (female correlation ≈ 0.58, male correlation ≈ 0.44). Gender is a key confounding factor that must be accounted for separately to avoid overestimating the direct relationship between height and shoe size.
+```
+
+
