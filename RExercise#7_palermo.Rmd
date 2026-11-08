@@ -1,0 +1,140 @@
+---
+title: "R Lab: Data Structures - Data Frames"
+author: "Alexa Palermo"
+date: "2026-11-08"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+## Part A — Creating Data Frames
+```{r}
+# a. Data Frames
+# TODO: Before combining these into a data frame, confirm all six vectors
+# have the same length using length() on each one (or wrap them in c()
+# and check for yourself that every value is 20)
+
+Respondent <- 1:20
+Sex <- c(2, 2, 1, 2, 2, 2, 2, 1, 2, 1, 2, 2, 2, 1, 2, 2, 2, 1, 2, 2)
+FathersOccupation <- c(1, 1, 2, 2, 1, 3, 2, 1, 1, 2, 1, 1, 3, 3, 1, 1, 2, 1, 1, 3)
+PersonsAtHome <- c(7, 7, 7, 8, 5, 8, 6, 7, 8, 7, 5, 7, 6, 7, 8, 8, 9, 11, 7, 6)
+SiblingsAtSchool <- c(4, 4, 3, 4, 1, 3, 5, 1, 2, 2, 2, 3, 3, 5, 2, 3, 2, 3, 3, 2)
+TypesOfHouses <- c(1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+
+length(Respondent)
+length(Sex)
+length(FathersOccupation)
+length(PersonsAtHome)
+length(SiblingsAtSchool)
+length(TypesOfHouses)
+
+
+```
+# Question #1: 
+Answer:
+Running the length() on each vector returns 20 for each variable. This just verifies that all vectors have the same length which is needed before combining them into a data frame using the data.frame().
+
+```{r}
+# TODO: Combine all six vectors into a data frame called survey using
+# data.frame(), naming the columns: Respondent, Sex, FathersOccupation,
+# PersonsAtHome, SiblingsAtSchool, TypesOfHouses
+survey <- data.frame(
+  Respondent = Respondent,
+  Sex = Sex,
+  FathersOccupation = FathersOccupation,
+  PersonsAtHome = PersonsAtHome,
+  SiblingsAtSchool = SiblingsAtSchool,
+  TypesOfHouses = TypesOfHouses
+)
+# Print the resulting data frame
+print(survey)
+
+# a. Describe the data. Get the structure or the summary of the data.
+str(survey)
+# Get summary statistics of the data frame
+summary(survey)
+
+# When using str(survey) it shows that survey is a data frames that contains 20 observation in  row and 6 numeric variables in a columns. Meanwhile summary(survey) provides the summary of each numeric columns including its minimum, 1st and 3rd quartile, median, mean and maximum.
+
+# b. Check for the dimensions. How many rows and columns?
+dim(survey)
+# running the code above results to 20 6. this means the data frames has 20 rows and columns.
+
+# c. Create factors for Sex, Father's Occupation and Types of Houses
+survey$Sex <- factor(survey$Sex, 
+                     levels = c(1, 2), 
+                     labels = c("Male", "Female"))
+
+survey$FathersOccupation <- factor(survey$FathersOccupation, 
+                                   levels = c(1, 2, 3), 
+                                   labels = c("Farmer", "Driver", "Others"))
+
+survey$TypesOfHouses <- factor(survey$TypesOfHouses, 
+                               levels = c(1, 2, 3), 
+                               labels = c("Wood", "Semi-Concrete", "Concrete"))
+
+# d. Get the mean for all columns.
+colMeans(survey[, sapply(survey, is.numeric)])
+
+# e. Extract the 1st five rows and then all the columns using subsetting functions. What is the output?
+survey[1:5, ]
+# The output dispalys a five row yable that contains all the respondents from 1 to 5 and along with the variable values.
+
+# f: Select the variable types of houses then store the vector that results as types_houses.
+types_houses <- survey$TypesOfHouses
+types_houses
+
+# g. Select only all Males respondent that their father occupation was farmer.
+males_farmer <- subset(survey, Sex == 1 & FathersOccupation == 1)
+males_farmer
+
+# this code filters the all the male respondent whose occupation is a farmers.
+
+# h. Select only all females respondent that have greater than or equal to 5 number of siblings attending school.
+females_siblings5 <- subset(survey, Sex == 2 & SiblingsAtSchool >= 5)
+females_siblings5
+
+# This code filters all the female respondent who have a number of sibling of 5 or more.
+```
+# Question #2:
+Checking that all vectors have the same length is necessary because each row in a data frame represents one specific respondent across all answers. If the lengths do not match, R will throw an error or align the wrong answers to the wrong people, ruining the survey data.
+
+# Question #3:
+Sex, FathersOccupation, and TypesOfHouses are categories represented by numbers (nominal data), while PersonsAtHome and SiblingsAtSchool are actual counts of people. Finding the average of a category like Sex is misleading because numbers like 1 and 2 are just labels for groups, not measurable values. Calculating an average for them produces a meaningless math value (like 1.7) instead of real information.
+
+# Question #4:
+Filtering with Sex == 1 shows the number 1 in the output instead of the label "Male". Someone who does not know the legend might think 1 means a count of 1 person, a first choice, or female instead of male. This shows that using raw numeric codes without labels makes data confusing and easy to misunderstand.
+# Question #5:
+```{r}
+# Option 1: Using nrow() on subsetted data
+nrow(subset(survey, Sex == 1))
+# Option 2: Using sum()
+sum(survey$Sex == 1)
+```
+# Answer:
+Out of 20 respondents, there are 5 male respondents. Yes, this small sample size lowers confidence when applying patterns to a larger population. A sample of only 20 people can easily reflect random chance or bias rather than real trends in the whole population.
+
+# Question #6
+```{r}
+summary(survey)
+```
+R treats these columns as numeric because they are stored as numbers such as 1, 2, or 3. It only reads data types and does not automatically understand the real-world meaning of the numbers. This shows that how data is stored in a computer is just a format, while what data means depends on human context and proper coding in R using factors.
+
+
+# Question #7:
+```{r}
+# Question #7:
+# Calculate the mean for PersonsAtHome
+mean(survey$PersonsAtHome)
+# Calculate the mean for Sex (when stored as numbers)
+mean(survey$Sex)
+
+
+```
+# Answer:
+The mean of PersonsAtHome (7.15) is meaningful to report, while the mean of Sex (1.75) is not. An average value of 1.75 has no physical meaning because you cannot have a "1.75 sex". Categories should be summarized using counts or percentages instead of a mean.
+
+
+
+
