@@ -2,7 +2,9 @@
 title: "Rpractical_palermo"
 author: "Alexa Palermo"
 date: "2026-11-11"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -10,7 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 Part A: Basic Operations
 ```{r}
-#A1
+#A1 *Create v as the sequence 5,10,15,....,50 using seq(). Print its length, sum, meean.*
 
 v <- seq(from = 5, to = 50, by = 5)
 
@@ -20,7 +22,7 @@ sum(v)
 mean(v)
 ```
 ```{r}
-#A2
+#A2 *Create w that repeats
 # Repeat the vector c(1, 2, 3) 4 times
 w <- rep(c(1, 2, 3), times = 4)
 

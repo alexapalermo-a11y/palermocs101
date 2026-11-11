@@ -358,7 +358,7 @@ display: none;
 
 
 <p>Part A: Basic Operations</p>
-<pre class="r"><code>#A1
+<pre class="r"><code>#A1 *Create v as the sequence 5,10,15,....,50 using seq(). Print its length, sum, meean.*
 
 v &lt;- seq(from = 5, to = 50, by = 5)
 
@@ -369,7 +369,7 @@ length(v)</code></pre>
 <pre><code>## [1] 275</code></pre>
 <pre class="r"><code>mean(v)</code></pre>
 <pre><code>## [1] 27.5</code></pre>
-<pre class="r"><code>#A2
+<pre class="r"><code>#A2 *Create w that repeats
 # Repeat the vector c(1, 2, 3) 4 times
 w &lt;- rep(c(1, 2, 3), times = 4)
 
@@ -566,29 +566,9 @@ head(students_sorted, 3)</code></pre>
 ## 7  7 Grace   F       A      95    93         98    94.0   TRUE   Honors   10
 ## 6  6 Farid   M       C      88    91         85    89.5   TRUE     Good    9</code></pre>
 <p>Part E: Basic Factors</p>
-<pre class="r"><code>#E1:
-students_all$section &lt;- factor(students_all$section)
-students_all$sex &lt;- factor(students_all$sex)</code></pre>
-<pre class="r"><code>#E2:
-table(students_all$sex)</code></pre>
-<pre><code>## 
-## F M 
-## 5 5</code></pre>
-<pre class="r"><code>table(students_all$section)</code></pre>
-<pre><code>## 
-## A B C 
-## 4 3 3</code></pre>
-<pre class="r"><code>table(students_all$sex, students_all$section)</code></pre>
-<pre><code>##    
-##     A B C
-##   F 2 1 2
-##   M 2 2 1</code></pre>
-<pre class="r"><code>#E3:
-as.integer(students_all$sex)</code></pre>
-<pre><code>##  [1] 1 2 2 1 1 2 1 2 1 2</code></pre>
-<pre class="r"><code>#E4:
-levels(students_all$sex_label)</code></pre>
-<pre><code>## NULL</code></pre>
+<pre class="r"><code>#E1:</code></pre>
+<pre class="r"><code>#E2:</code></pre>
+<p>`</p>
 
 
 
