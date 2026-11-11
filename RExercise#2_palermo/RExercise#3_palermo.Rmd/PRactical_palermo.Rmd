@@ -3,8 +3,8 @@ title: "Rpractical_palermo"
 author: "Alexa Palermo"
 date: "2026-11-11"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
